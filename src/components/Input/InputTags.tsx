@@ -32,14 +32,14 @@ export interface Props {
   nativeAutoComplete?: 'on' | 'disabled'
 }
 
-const InputStyled = styled.input<Props>`
+export const InputStyled = styled.input<Props>`
   ${space}
   ${layout}
   ${color}
   border: none;
 `
 
-const Tag = styled.div`
+export const Tag = styled.div`
   margin-right: 8px;
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 4px;
@@ -55,7 +55,7 @@ export interface PropsContainerInput {
   onBlur?: () => void
 }
 
-const ContainerInput = styled(Box)<PropsContainerInput>`
+export const ContainerInput = styled(Box)<PropsContainerInput>`
   display: flex;
   max-height: 37px;
   align-items: center;

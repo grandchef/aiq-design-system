@@ -39,7 +39,7 @@ export interface Props
   nativeAutoComplete?: 'on' | 'disabled'
 }
 
-const Container = styled(Box)`
+export const Container = styled(Box)`
   ${color}
   ${space}
   ${layout}
@@ -47,7 +47,7 @@ const Container = styled(Box)`
   ${fontWeight}
 `
 
-const LabelStyled = styled.label<Props>`
+export const LabelStyled = styled.label<Props>`
   position: relative;
   top: -6px;
   padding-top: 6px;

@@ -31,7 +31,9 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   nativeAutoComplete?: 'on' | 'disabled'
 }
 
-const InputStyled = styled.input.attrs({ 'data-testid': 'input' })<Props>`
+export const InputStyled = styled.input.attrs({
+  'data-testid': 'input'
+})<Props>`
   &::placeholder {
     color: ${({ theme }) => theme.colors.grey};
     font-size: ${({ theme }) => theme.fontSizes.medium};
@@ -65,7 +67,7 @@ export interface PropsContainerSufix {
   onBlur?: () => void
 }
 
-const ContainerSufix = styled(Box)<PropsContainerSufix>`
+export const ContainerSufix = styled(Box)<PropsContainerSufix>`
   display: flex;
   align-items: center;
 
@@ -91,14 +93,14 @@ const ContainerSufix = styled(Box)<PropsContainerSufix>`
   ${border}
 `
 
-const InputSufixed = styled.input<Props>`
+export const InputSufixed = styled.input<Props>`
   ${layout}
   ${color}
 
   border: none;
 `
 
-const InputPrefixed = styled.input<Props>`
+export const InputPrefixed = styled.input<Props>`
   ${layout}
   ${color}
   

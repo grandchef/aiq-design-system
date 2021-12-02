@@ -65,7 +65,6 @@
     "react-dom": "^17.0.2",
     "react-icons": "^3.11.0",
     "react-input-mask": "^2.0.4",
-    "react-numeric": "^1.0.0",
     "react-router-dom": "^5.2.0",
     "react-spring": "^8.0.27",
     "react-table": "^7.6.0",

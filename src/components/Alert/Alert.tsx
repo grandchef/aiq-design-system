@@ -6,7 +6,7 @@ import styled, { DefaultTheme, css } from 'styled-components'
 
 import { Box } from '../Box'
 import { Text } from '../Text'
-import { Button } from '../Button'
+import { Button, Props as ButtonProps } from '../Button'
 import { Flex, Props as FlexProps } from '../Flex'
 
 export interface Props {
@@ -20,12 +20,12 @@ export interface Props {
     label: string
     function: () => void
     visible: boolean
-  }
+  } & ButtonProps
   cancelButton?: {
     label: string
     function: () => void
     visible: boolean
-  }
+  } & ButtonProps
 }
 
 interface BackgroundAlertProps extends FlexProps {

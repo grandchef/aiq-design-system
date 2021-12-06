@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import styled, { DefaultTheme, css } from 'styled-components'
 import { layout } from 'styled-system'
 import { Flex, Props as FlexProps } from '../Flex'
-import { Button } from '../Button'
+import { Button, Props as ButtonProps } from '../Button'
 import { Text } from '../Text'
 import { Box } from '../Box'
 
@@ -23,12 +23,12 @@ export interface Props extends React.HTMLAttributes<HTMLElement> {
     label: string
     function: () => void
     visible: boolean
-  }
+  } & ButtonProps
   cancelButton?: {
     label: string
     function: () => void
     visible: boolean
-  }
+  } & ButtonProps
 }
 
 const modalVariants: { [index: string]: any } = {

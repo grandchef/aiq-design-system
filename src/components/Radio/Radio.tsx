@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react'
+import React, { InputHTMLAttributes, useCallback } from 'react'
 
 import styled, { DefaultTheme, css } from 'styled-components'
 
@@ -123,10 +123,20 @@ export const Radio = React.forwardRef<HTMLInputElement, Props>(
       m,
       mr,
       ml,
+      onChange,
       ...props
     },
     ref
   ) => {
+    const onInputChange = useCallback(
+      (event: any) => {
+        if (!disabled && onChange) {
+          onChange(event)
+        }
+      },
+      [disabled, onChange]
+    )
+
     return (
       <RadioStyled
         mx={mx}
@@ -146,6 +156,7 @@ export const Radio = React.forwardRef<HTMLInputElement, Props>(
           name={name}
           value={value}
           data-testid='radio-input'
+          onChange={onInputChange}
           {...props}
         />
         <Box />

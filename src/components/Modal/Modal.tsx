@@ -19,6 +19,7 @@ export interface Props extends React.HTMLAttributes<HTMLElement> {
   onClose?: () => void
   onSubmit?: () => void
   children?: any
+  showFooterButtons: boolean
   okButton?: {
     label: string
     function: () => void
@@ -191,6 +192,7 @@ export const Modal: React.FC<Props> = ({
     // do nothing.
   },
   variant = 'medium',
+  showFooterButtons = true,
   okButton = defaultButton,
   cancelButton = defaultButton,
   ...props
@@ -275,51 +277,53 @@ export const Modal: React.FC<Props> = ({
 
             {children}
 
-            <Flex
-              width='100%'
-              marginTop={44}
-              justifyContent='space-between'
-              flexDirection='row-reverse'
-              {...buttonsProps}
-            >
-              {okButton.visible && okButton.function ? (
-                <Button
-                  palette='primary'
-                  onClick={handleOk}
-                  variant='contained'
-                  fontWeight='medium'
-                  data-testid='modal-button'
-                  type='button'
-                  {...okButton}
-                >
-                  {okButton.label}
-                </Button>
-              ) : (
-                <Button
-                  palette='primary'
-                  variant='contained'
-                  fontWeight='medium'
-                  data-testid='modal-button'
-                  type='submit'
-                  {...okButton}
-                >
-                  {okButton.label}
-                </Button>
-              )}
+            {showFooterButtons && (
+              <Flex
+                width='100%'
+                marginTop={44}
+                justifyContent='space-between'
+                flexDirection='row-reverse'
+                {...buttonsProps}
+              >
+                {okButton.visible && okButton.function ? (
+                  <Button
+                    palette='primary'
+                    onClick={handleOk}
+                    variant='contained'
+                    fontWeight='medium'
+                    data-testid='modal-button'
+                    type='button'
+                    {...okButton}
+                  >
+                    {okButton.label}
+                  </Button>
+                ) : (
+                  <Button
+                    palette='primary'
+                    variant='contained'
+                    fontWeight='medium'
+                    data-testid='modal-button'
+                    type='submit'
+                    {...okButton}
+                  >
+                    {okButton.label}
+                  </Button>
+                )}
 
-              {cancelButton.visible && (
-                <Button
-                  palette='primary'
-                  variant='outlined'
-                  fontWeight='medium'
-                  onClick={handleCancel}
-                  data-testid='modal-button'
-                  {...cancelButton}
-                >
-                  {cancelButton.label}
-                </Button>
-              )}
-            </Flex>
+                {cancelButton.visible && (
+                  <Button
+                    palette='primary'
+                    variant='outlined'
+                    fontWeight='medium'
+                    onClick={handleCancel}
+                    data-testid='modal-button'
+                    {...cancelButton}
+                  >
+                    {cancelButton.label}
+                  </Button>
+                )}
+              </Flex>
+            )}
           </ModalStyled>
         </FormStyled>
       </BackgroundModal>,

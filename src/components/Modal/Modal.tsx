@@ -19,7 +19,7 @@ export interface Props extends React.HTMLAttributes<HTMLElement> {
   onClose?: () => void
   onSubmit?: () => void
   children?: any
-  showFooterButtons: boolean
+  showFooterButtons?: boolean
   okButton?: {
     label: string
     function: () => void

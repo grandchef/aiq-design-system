@@ -117,7 +117,7 @@ export const Tab: React.FC<TabProps> = ({
   index,
   ...props
 }) => {
-  function handleClick(event) {
+  function handleClick(event: any) {
     event.currentTarget.parentNode.setAttribute('data-id', index)
   }
 

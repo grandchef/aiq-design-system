@@ -1,11 +1,14 @@
 import React from 'react'
-import { MdHome, MdBookmark, MdStorage, MdExitToApp } from 'react-icons/md'
+
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Sidebar } from './Sidebar'
+
+import { MdHome, MdBookmark, MdStorage, MdExitToApp } from 'react-icons/md'
+
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 
 import { Flex } from '../Flex'
-import { Avatar } from '../Avatar'
+
+import { Sidebar } from './Sidebar'
 
 export default {
   component: Sidebar,
@@ -83,7 +86,7 @@ const sidebarData = [
   {
     icon: <MdStorage size={18} />,
     name: 'store',
-    itens: [
+    items: [
       {
         name: 'Sub Item',
         href: '/subItem'
@@ -102,7 +105,7 @@ const sidebarData = [
   {
     icon: <MdStorage size={18} />,
     name: 'itens',
-    itens: [
+    items: [
       {
         name: 'Sub Item',
         href: '/subItem'

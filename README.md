@@ -6,7 +6,7 @@
 
 <div align="center">
 
-A component lib in [React](https://reactjs.org/) developing for [Rosalvo](https://lite.grandchef.com.br/).
+A component lib in [React](https://reactjs.org/) developing for [Rosalvo](https://app.grandchef.com.br/).
 
 <p align="center">
   <a href="https://github.com/grandchef" style="text-decoration: none" target="_blank">
@@ -19,6 +19,10 @@ A component lib in [React](https://reactjs.org/) developing for [Rosalvo](https:
     <img alt="" src=
   "https://img.shields.io/github/last-commit/grandchef/rosalvo-design-system">
   </a>
+  
+  <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/aiq-design-system.svg?style=flat"/>
+  
+  [![npm downloads](https://img.shields.io/npm/dm/aiq-design-system.svg)](https://www.npmjs.com/package/aiq-design-system)
 </p>
 
 [![npm package](https://img.shields.io/npm/v/@grandchef/rosalvo-design-system/latest)](https://www.npmjs.com/package/@grandchef/rosalvo-design-system)
@@ -27,7 +31,7 @@ A component lib in [React](https://reactjs.org/) developing for [Rosalvo](https:
 
 </div>
 
-## How install
+## como adicionar ao projeto
 
 ```sh
 yarn add @grandchef/rosalvo-design-system
@@ -39,7 +43,12 @@ npm install @grandchef/rosalvo-design-system
 
 ## How utilize
 
-A quick use for the lib:
+function App({ children }) {
+  return <ThemeProvider>{children}</ThemeProvider>
+}
+```
+
+2 - já pode sair utilizando os componentes importados da **aiq-design-system**
 
 ```jsx
 import React from 'react'
@@ -47,7 +56,7 @@ import ReactDOM from 'react-dom'
 
 import { Button, Input, Flex, ThemeProvider } from "rosalvo-design-system";
 
-function App() {
+export const AiqComponent() {
   return (
     <ThemeProvider>
       <Flex p={20} flexDirection="column">
@@ -58,9 +67,10 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'))
 ```
 
-A sandbox for interaction:
+## template no codesandbox
+
+temos um template configurado no codesandbox com a lib configurada!
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/rosalvo-design-system-yhpir?file=/src/App.js)

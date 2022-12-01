@@ -1,7 +1,10 @@
 import React from 'react'
+
 import styled, { DefaultTheme, css } from 'styled-components'
-import PropTypes from 'prop-types'
+
 import {
+  background,
+  BackgroundProps,
   color,
   ColorProps,
   space,
@@ -25,34 +28,35 @@ import {
   TextAlignProps
 } from 'styled-system'
 
-export interface Props
-  extends SpaceProps,
-    DefaultTheme,
-    LayoutProps,
-    FontSizeProps,
-    FontWeightProps,
-    PositionProps,
-    ColorProps,
-    FlexProps,
-    FlexboxProps,
-    BorderProps,
-    TextAlignProps {
-  variant?: 'auto' | 'centralized' | 'fullCentralized'
-  isClickable?: boolean
-  color?: string
-  fullHeight?: boolean
-  children?: any
-  className?: string
-  onClick?: (e: any) => void
-  onDragOver?: (e: any) => void
-  onDragEnter?: (e: any) => void
-  onDragLeave?: (e: any) => void
-  onDragEnd?: (e: any) => void
-  onDrop?: (e: any) => void
-  style?: any
-}
+export type Props = BackgroundProps &
+  SpaceProps &
+  DefaultTheme &
+  LayoutProps &
+  FontSizeProps &
+  FontWeightProps &
+  PositionProps &
+  ColorProps &
+  FlexProps &
+  FlexboxProps &
+  BorderProps &
+  TextAlignProps & {
+    variant?: 'auto' | 'centralized' | 'fullCentralized'
+    isClickable?: boolean
+    color?: string
+    fullHeight?: boolean
+    children?: any
+    className?: string
+    onClick?: (e: any) => void
+    onDragOver?: (e: any) => void
+    onDragEnter?: (e: any) => void
+    onDragLeave?: (e: any) => void
+    onDragEnd?: (e: any) => void
+    onDrop?: (e: any) => void
+    style?: any
+  }
 
 const FlexStyled = styled.div<Props>`
+  ${background}
   ${space}
   ${fontSize}
   ${fontWeight}
@@ -115,12 +119,3 @@ export const Flex = React.forwardRef<HTMLDivElement, Props>(
 )
 
 Flex.displayName = 'Flex'
-
-Flex.propTypes = {
-  color: PropTypes.string,
-  variant: PropTypes.oneOf(['auto', 'centralized', 'fullCentralized']),
-  fullHeight: PropTypes.bool,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.node
-}

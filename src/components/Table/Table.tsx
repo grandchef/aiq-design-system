@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useCallback
 } from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { useTable, useSortBy } from 'react-table'
@@ -27,9 +26,10 @@ export interface TableProps {
   onRowBackground?: (record: any) => string
 }
 
-export interface FlexProps extends SpaceProps, LayoutProps {
-  showScroll: boolean
-}
+export type FlexProps = SpaceProps &
+  LayoutProps & {
+    showScroll: boolean
+  }
 
 const TableStyled = styled.table<TableProps>`
   border-collapse: collapse;
@@ -267,16 +267,4 @@ export const Table: React.FC<TableProps> = ({
       </TableStyled>
     </FlexWrapper>
   )
-}
-
-Table.propTypes = {
-  scroll: PropTypes.string,
-  hoverable: PropTypes.bool,
-  onClickRow: PropTypes.func,
-  onHoverRow: PropTypes.func,
-  renderExpanded: PropTypes.bool,
-  onRowBackground: PropTypes.func,
-  data: PropTypes.array.isRequired,
-  expandedRowRender: PropTypes.func,
-  columns: PropTypes.array.isRequired
 }

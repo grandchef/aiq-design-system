@@ -1,19 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react'
-import PropTypes from 'prop-types'
+
 import { SpaceProps, space, LayoutProps, layout } from 'styled-system'
 import styled, { css, DefaultTheme } from 'styled-components'
 
 import { Flex } from '../Flex'
 
-export interface TabsProps extends SpaceProps, LayoutProps, DefaultTheme {
-  extra?: any
-  children?: any
-  wrapperProps?: any
-  isMobile?: boolean
-  variant?: 'default' | 'contained' | 'card'
-  scrollPosition?: 'left' | 'middle' | 'right'
-  onChange?: (event: any, newValue: any) => void
-}
+export type TabsProps = SpaceProps &
+  LayoutProps &
+  DefaultTheme & {
+    extra?: any
+    children?: any
+    wrapperProps?: any
+    isMobile?: boolean
+    variant?: 'default' | 'contained' | 'card'
+    scrollPosition?: 'left' | 'middle' | 'right'
+    onChange?: (event: any, newValue: any) => void
+  }
 
 const tabsVariations: { [index: string]: any } = {
   default: css`
@@ -223,14 +225,6 @@ export const Tabs: React.FC<TabsProps> = ({
       {extra && <Flex px='12px'>{extra}</Flex>}
     </TabStyled>
   )
-}
-
-Tabs.propTypes = {
-  extra: PropTypes.any,
-  children: PropTypes.any,
-  onChange: PropTypes.func,
-  wrapperProps: PropTypes.object,
-  variant: PropTypes.oneOf(['default', 'contained', 'card'])
 }
 
 Tabs.defaultProps = {

@@ -1,5 +1,4 @@
 import React, { ReactNode, useCallback } from 'react'
-import PropTypes from 'prop-types'
 
 import styled, { DefaultTheme } from 'styled-components'
 import {
@@ -20,22 +19,22 @@ import {
 import { Text } from '../Text'
 import { Tooltip } from '../Tooltip'
 
-export interface Props
-  extends ColorProps,
-    DefaultTheme,
-    SpaceProps,
-    BorderProps,
-    LayoutProps,
-    FontSizeProps,
-    FontWeightProps {
-  color?: string
-  count?: number
-  children?: ReactNode
-  className?: string
-  statusColor?: string
-  overflowCount?: number
-  variant?: 'label' | 'default'
-}
+export type Props = BorderProps &
+  ColorProps &
+  DefaultTheme &
+  SpaceProps &
+  BorderProps &
+  LayoutProps &
+  FontSizeProps &
+  FontWeightProps & {
+    color?: string
+    count?: number
+    children?: ReactNode
+    className?: string
+    statusColor?: string
+    overflowCount?: number
+    variant?: 'label' | 'default'
+  }
 
 const BadgeStyled = styled(Text)`
   display: inline-flex;
@@ -123,15 +122,6 @@ export const Badge: React.FC<Props> = ({
       {getCounter(count, overflowCount) || children}
     </BadgeStyled>
   )
-}
-
-Badge.propTypes = {
-  className: PropTypes.string,
-  count: PropTypes.number,
-  children: PropTypes.node,
-  statusColor: PropTypes.string,
-  overflowCount: PropTypes.number,
-  variant: PropTypes.oneOf(['label', 'default'])
 }
 
 Badge.defaultProps = {

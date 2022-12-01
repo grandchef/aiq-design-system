@@ -2,15 +2,15 @@ import React, { InputHTMLAttributes } from 'react'
 import styled, { css, DefaultTheme } from 'styled-components'
 import { space } from 'styled-system'
 
-export interface Props
-  extends DefaultTheme,
-    InputHTMLAttributes<HTMLInputElement> {
-  checked?: boolean
-  disabled?: boolean
-  secondary?: boolean
-  className?: string
-  variant?: 'default' | 'small'
-}
+
+export type Props = DefaultTheme &
+  InputHTMLAttributes<HTMLInputElement> & {
+    checked?: boolean
+    disabled?: boolean
+    secondary?: boolean
+    className?: string
+    variant?: 'default' | 'small'
+  }
 
 const switchVariations: { [index: string]: any } = {
   default: css`
@@ -77,7 +77,7 @@ const SwitchStyled = styled.label<Props>`
 
     &:not(:checked):not(:disabled):hover::before {
       background-color: ${({ theme, secondary }) =>
-        secondary ? theme.colors.secondaryLight : theme.colors.primaryLight};
+    secondary ? theme.colors.secondaryLight : theme.colors.primaryLight};
     }
 
     &:checked::after {
@@ -86,7 +86,7 @@ const SwitchStyled = styled.label<Props>`
 
     &:checked::before {
       background-color: ${({ theme, secondary }) =>
-        secondary ? theme.colors.secondary : theme.colors.primary};
+    secondary ? theme.colors.secondary : theme.colors.primary};
     }
 
     &:disabled {
@@ -110,7 +110,7 @@ const SwitchStyled = styled.label<Props>`
 
     &:disabled:checked:after {
       background-color: ${({ theme, secondary }) =>
-        secondary ? theme.colors.secondaryLight : theme.colors.primaryLight};
+    secondary ? theme.colors.secondaryLight : theme.colors.primaryLight};
       box-shadow: none;
     }
 

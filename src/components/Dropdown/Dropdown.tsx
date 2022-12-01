@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
 import styled, { DefaultTheme } from 'styled-components'
 import {
@@ -17,14 +16,17 @@ type Item = {
   label: any
   value: any
 }
-export interface Props extends SizeProps, MarginProps, LayoutProps {
-  label: string
-  itens: Item[]
-  opened?: boolean
-  onChange?: (item: any) => void
-  disabled?: boolean
-  selected?: any
-}
+
+export type Props = SizeProps &
+  MarginProps &
+  LayoutProps & {
+    label: string
+    itens: Item[]
+    opened?: boolean
+    onChange?: (item: any) => void
+    disabled?: boolean
+    selected?: any
+  }
 
 const BoxStyled = styled(Box)`
   position: relative;
@@ -160,15 +162,4 @@ export const Dropdown: React.FC<Props> = ({
       )}
     </BoxStyled>
   )
-}
-
-Dropdown.propTypes = {
-  label: PropTypes.string.isRequired,
-  itens: PropTypes.array.isRequired,
-  selected: PropTypes.any,
-  opened: PropTypes.bool,
-  maxWidth: PropTypes.number,
-  width: PropTypes.any,
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool
 }

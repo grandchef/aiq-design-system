@@ -1,5 +1,4 @@
 import React, { useState, InputHTMLAttributes } from 'react'
-import PropTypes from 'prop-types'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 
 import styled, { css } from 'styled-components'
@@ -11,7 +10,7 @@ import { Box } from '../Box'
 
 import { InputErrorMessage } from '../InputErrorMessage'
 
-export interface Props extends InputHTMLAttributes<HTMLInputElement> {
+export type Props = InputHTMLAttributes<HTMLInputElement> & {
   name?: string
   inputRef?: any
   errorForm?: boolean
@@ -33,7 +32,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 export const InputStyled = styled.input.attrs({
   'data-testid': 'input'
-})<Props>`
+}) <Props>`
   &::placeholder {
     color: ${({ theme }) => theme.colors.grey};
     font-size: ${({ theme }) => theme.fontSizes.medium};
@@ -67,7 +66,7 @@ export interface PropsContainerSufix {
   onBlur?: () => void
 }
 
-export const ContainerSufix = styled(Box)<PropsContainerSufix>`
+export const ContainerSufix = styled(Box) <PropsContainerSufix>`
   display: flex;
   align-items: center;
 
@@ -246,30 +245,4 @@ export const InputNeutral: React.FC<Props> = ({
       {errorForm && <InputErrorMessage errorMessage={errorMessage} />}
     </Flex>
   )
-}
-
-InputStyled.propTypes = {
-  inputRef: PropTypes.any,
-  value: PropTypes.string,
-  nativeAutoComplete: PropTypes.oneOf(['on', 'disabled'])
-}
-
-InputNeutral.propTypes = {
-  name: PropTypes.string,
-  inputRef: PropTypes.any,
-  errorForm: PropTypes.bool,
-  type: PropTypes.string,
-  errorMessage: PropTypes.string,
-  sufix: PropTypes.any,
-  prefix: PropTypes.any,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
-  containerProps: PropTypes.object,
-  boxProps: PropTypes.object,
-  nativeAutoComplete: PropTypes.oneOf(['on', 'disabled']),
-
-  backgroundColor: PropTypes.any,
-  border: PropTypes.any,
-  width: PropTypes.any,
-  maxWidth: PropTypes.any
 }

@@ -18,7 +18,7 @@ export interface Props {
   children?: any
   okButton?: {
     label: string
-    function: () => void
+    function?: () => void
     visible: boolean
   } & ButtonProps
   cancelButton?: {
@@ -164,7 +164,7 @@ export const Alert: React.FC<Props> = ({
       e.preventDefault()
     }
 
-    okButton.function()
+    if (okButton.function) okButton.function()
   }
 
   function handleCancel() {
@@ -220,7 +220,7 @@ export const Alert: React.FC<Props> = ({
               </Button>
             )}
 
-            {okButton.visible && (
+            {okButton.visible && okButton.function && (
               <Button
                 data-testid='modal-alert-btn-ok'
                 onClick={handleOk}

@@ -22,7 +22,7 @@ export interface Props extends React.HTMLAttributes<HTMLElement> {
   showFooterButtons?: boolean
   okButton?: {
     label: string
-    function: () => void
+    function?: () => void
     visible: boolean
   } & ButtonProps
   cancelButton?: {
@@ -52,7 +52,7 @@ interface BackgroundModalProps extends FlexProps {
   zIndex?: number
 }
 
-const BackgroundModal = styled(Flex)<BackgroundModalProps>`
+const BackgroundModal = styled(Flex) <BackgroundModalProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -110,7 +110,7 @@ const FormStyled = styled.form<ModalStyledProps>`
   flex: 1;
 `
 
-const ModalStyled = styled(Flex)<ModalStyledProps>`
+const ModalStyled = styled(Flex) <ModalStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -225,7 +225,8 @@ export const Modal: React.FC<Props> = ({
     if (e.preventDefault) {
       e.preventDefault()
     }
-    okButton.function()
+
+    if (okButton.function) okButton.function()
   }
 
   function handleCancel() {

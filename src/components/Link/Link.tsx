@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link as LinkRouterDom } from 'react-router-dom'
 
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
   color,
@@ -16,18 +15,17 @@ import {
   FontWeightProps
 } from 'styled-system'
 
-export interface Props
-  extends ColorProps,
-    SpaceProps,
-    LayoutProps,
-    FontSizeProps,
-    FontWeightProps {
-  variant?: 'internal' | 'external'
-  href: string
-  children?: any
-  color?: string
-  onClick?: any
-}
+export type Props = ColorProps &
+  SpaceProps &
+  LayoutProps &
+  FontSizeProps &
+  FontWeightProps & {
+    variant?: 'internal' | 'external'
+    href: string
+    children?: any
+    color?: string
+    onClick?: any
+  }
 
 export interface StyledProps
   extends ColorProps,
@@ -48,9 +46,9 @@ const styledLink = css`
   ${fontSize}
   ${fontWeight}
 
-  text-decoration: none; 
+  text-decoration: none;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `
@@ -80,10 +78,4 @@ export const Link: React.FC<Props> = ({
       {children}
     </ExternalStyled>
   )
-}
-
-Link.propTypes = {
-  variant: PropTypes.oneOf(['internal', 'external']),
-  href: PropTypes.string.isRequired,
-  children: PropTypes.any
 }

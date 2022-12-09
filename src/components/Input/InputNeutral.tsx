@@ -1,5 +1,4 @@
 import React, { useState, InputHTMLAttributes } from 'react'
-import PropTypes from 'prop-types'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 
 import styled, { css } from 'styled-components'
@@ -11,7 +10,7 @@ import { Box } from '../Box'
 
 import { InputErrorMessage } from '../InputErrorMessage'
 
-export interface Props extends InputHTMLAttributes<HTMLInputElement> {
+export type Props = InputHTMLAttributes<HTMLInputElement> & {
   name?: string
   inputRef?: any
   errorForm?: boolean
@@ -28,12 +27,13 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   border?: any
   width?: any
   maxWidth?: any
+  disabled?: boolean
   nativeAutoComplete?: 'on' | 'disabled'
 }
 
 export const InputStyled = styled.input.attrs({
   'data-testid': 'input'
-})<Props>`
+}) <Props>`
   &::placeholder {
     color: ${({ theme }) => theme.colors.grey};
     font-size: ${({ theme }) => theme.fontSizes.medium};
@@ -65,18 +65,22 @@ export interface PropsContainerSufix {
   errorForm?: boolean
   onClick?: () => void
   onBlur?: () => void
+  disabled?: boolean
 }
 
-export const ContainerSufix = styled(Box)<PropsContainerSufix>`
+export const ContainerSufix = styled(Box) <PropsContainerSufix>`
   display: flex;
   align-items: center;
 
   padding: 10px 12px;
   border: 1px solid ${({ theme }) => theme.colors.mediumGrey};
   border-radius: 4px;
+  background: ${({ theme, disabled }) =>
+    disabled ? theme.colors.lightGrey : theme.colors.white};
 
-  ${({ inputSelected }) =>
+  ${({ inputSelected, disabled }) =>
     inputSelected &&
+    !disabled &&
     css`
       border-color: ${({ theme }) => theme.colors.primary};
 
@@ -120,6 +124,7 @@ export const InputNeutral: React.FC<Props> = ({
   placeholder,
   containerProps,
   nativeAutoComplete,
+  disabled,
   ...props
 }) => {
   const [inputSelected, setInputSelected] = useState(false)
@@ -142,6 +147,7 @@ export const InputNeutral: React.FC<Props> = ({
           inputSelected={inputSelected}
           onClick={() => setInputSelected(true)}
           onBlur={() => setInputSelected(false)}
+          disabled={disabled}
         >
           <InputSufixed
             name={name}
@@ -152,6 +158,7 @@ export const InputNeutral: React.FC<Props> = ({
             errorForm={errorForm}
             errorMessage={errorMessage}
             autoComplete={nativeAutoComplete}
+            disabled={disabled}
             {...props}
           />
           {sufix}
@@ -241,35 +248,12 @@ export const InputNeutral: React.FC<Props> = ({
         errorMessage={errorMessage}
         autoComplete={nativeAutoComplete}
         {...props}
+        data-testid='input'
+        nativeAutoComplete={nativeAutoComplete}
+        disabled={disabled}
       />
 
       {errorForm && <InputErrorMessage errorMessage={errorMessage} />}
     </Flex>
   )
-}
-
-InputStyled.propTypes = {
-  inputRef: PropTypes.any,
-  value: PropTypes.string,
-  nativeAutoComplete: PropTypes.oneOf(['on', 'disabled'])
-}
-
-InputNeutral.propTypes = {
-  name: PropTypes.string,
-  inputRef: PropTypes.any,
-  errorForm: PropTypes.bool,
-  type: PropTypes.string,
-  errorMessage: PropTypes.string,
-  sufix: PropTypes.any,
-  prefix: PropTypes.any,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
-  containerProps: PropTypes.object,
-  boxProps: PropTypes.object,
-  nativeAutoComplete: PropTypes.oneOf(['on', 'disabled']),
-
-  backgroundColor: PropTypes.any,
-  border: PropTypes.any,
-  width: PropTypes.any,
-  maxWidth: PropTypes.any
 }

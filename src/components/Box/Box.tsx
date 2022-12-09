@@ -1,7 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import styled from 'styled-components'
+
 import {
+  background,
+  BackgroundProps,
   color,
   ColorProps,
   space,
@@ -22,39 +25,37 @@ import {
   FlexboxProps
 } from 'styled-system'
 
-export interface Props
-  extends ColorProps,
-    SpaceProps,
-    FlexboxProps,
-    LayoutProps,
-    FontSizeProps,
-    FontWeightProps,
-    PositionProps,
-    BorderProps,
-    BoxShadowProps {
-  color?: string
-  children?: any
-  refBox?: any
-  onClick?: any
-  className?: string
-}
+export type Props = BorderProps &
+  BoxShadowProps &
+  BackgroundProps &
+  ColorProps &
+  FlexboxProps &
+  FontSizeProps &
+  FontWeightProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps & {
+    background?: string
+    children?: any
+    className?: string
+    color?: string
+    onClick?: any
+    refBox?: any
+  }
 
 export const BoxStyled = styled.div`
-  ${flexbox}
+  ${background}
+  ${border}
+  ${boxShadow}
   ${color}
-  ${space}
-  ${layout}
+  ${flexbox}
   ${fontSize}
   ${fontWeight}
-  ${border}
+  ${layout}
   ${position}
-  ${boxShadow}
+  ${space}
 `
 
 export const Box: React.FC<Props> = ({ refBox, ...props }) => {
   return <BoxStyled data-testid='box' ref={refBox} {...props} />
-}
-
-Box.propTypes = {
-  refBox: PropTypes.any
 }

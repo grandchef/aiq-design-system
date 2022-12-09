@@ -1,5 +1,4 @@
 import React, { InputHTMLAttributes } from 'react'
-import PropTypes from 'prop-types'
 
 import InputMask from 'react-input-mask'
 
@@ -7,7 +6,7 @@ import { InputOutlined } from './InputOutlined'
 import { InputNeutral } from './InputNeutral'
 import { InputTags } from './InputTags'
 
-export interface Props extends InputHTMLAttributes<HTMLInputElement> {
+export type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> & {
   name?: string
   inputRef?: any
   label?: string
@@ -191,34 +190,4 @@ export const Input: React.FC<Props> = ({
       {...props}
     />
   )
-}
-
-Input.propTypes = {
-  name: PropTypes.string,
-  inputRef: PropTypes.any,
-  label: PropTypes.string,
-  errorForm: PropTypes.bool,
-  type: PropTypes.string,
-  errorMessage: PropTypes.string,
-  sufix: PropTypes.any,
-  prefix: PropTypes.any,
-  value: PropTypes.string,
-  variant: PropTypes.oneOf(['outlined', 'default', 'tags']),
-  placeholder: PropTypes.string,
-  containerProps: PropTypes.object,
-
-  boxProps: PropTypes.object,
-  backgroundColor: PropTypes.any,
-  border: PropTypes.any,
-  width: PropTypes.any,
-  maxWidth: PropTypes.any,
-  mask: PropTypes.string,
-  onChange: PropTypes.func,
-  onPaste: PropTypes.func,
-  onMouseDown: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  readOnly: PropTypes.bool,
-  disabled: PropTypes.bool,
-  nativeAutoComplete: PropTypes.oneOf(['on', 'disabled'])
 }

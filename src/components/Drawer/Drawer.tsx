@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+
 import styled, { css, DefaultTheme } from 'styled-components'
 import {
   layout,
@@ -15,18 +15,17 @@ import {
 import { Flex } from '../Flex'
 import { Loading } from '../Loading'
 
-export interface Props
-  extends DefaultTheme,
-    LayoutProps,
-    ShadowProps,
-    MarginProps,
-    PaddingProps {
-  opened: boolean
-  loading?: boolean
-  children?: ReactNode
-  onClose?: () => void
-  variation?: 'right' | 'left'
-}
+export type Props = DefaultTheme &
+  LayoutProps &
+  ShadowProps &
+  MarginProps &
+  PaddingProps & {
+    opened: boolean
+    loading?: boolean
+    children?: ReactNode
+    onClose?: () => void
+    variation?: 'right' | 'left'
+  }
 
 const drawerVariations: { [index: string]: any } = {
   right: css<Props>`
@@ -150,12 +149,4 @@ export const Drawer: React.FC<Props> = ({
       </DrawerStyled>
     </>
   )
-}
-
-Drawer.propTypes = {
-  loading: PropTypes.bool,
-  onClose: PropTypes.func,
-  opened: PropTypes.bool.isRequired,
-  variation: PropTypes.oneOf(['right', 'left']),
-  children: PropTypes.node
 }

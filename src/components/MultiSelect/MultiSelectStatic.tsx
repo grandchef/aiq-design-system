@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 import { MdClose } from 'react-icons/md'
@@ -38,6 +37,8 @@ export interface Props {
   isDependent?: boolean
   emptyMessage?: string
   dependentMessage?: string
+  disabled?: boolean
+  removable?: boolean
 }
 
 const MultiSelectStyled = styled(Box)`
@@ -135,6 +136,27 @@ const SelectedItem = styled(Text)`
   white-space: nowrap;
 `
 
+const SelectedList = styled.ul`
+  li {
+    display: flex;
+    color: ${({ theme }) => theme.colors.white};
+    justify-content: space-between;
+    background: ${({ theme }) => theme.colors.primary} !important;
+    margin-bottom: 2px;
+  }
+`
+
+const CustomText = styled(Text)`
+  display: block;
+
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: bold;
+  font-size: 15px;
+
+  margin-left: 8px;
+  margin-bottom: 8px;
+`
+
 export const MultiSelectStatic: React.FC<Props> = ({
   items,
   maxWidth,
@@ -147,6 +169,8 @@ export const MultiSelectStatic: React.FC<Props> = ({
   emptyMessage = 'item não encontrado ou já adicionado',
   isDependent = false,
   dependentMessage = 'este campo tem alguma dependência',
+  disabled,
+  removable = false,
   ...props
 }) => {
   const [inputValue, setInputValue] = useState<string>('')
@@ -208,11 +232,13 @@ export const MultiSelectStatic: React.FC<Props> = ({
   ])
 
   const getFilteredItems = () =>
-    items.filter(
-      item =>
-        selectedItems.indexOf(item) < 0 &&
-        item.name.toLowerCase().startsWith(inputValue.toLowerCase())
-    )
+    items
+      .filter(
+        item =>
+          selectedItems.indexOf(item) < 0 &&
+          item.name.toLowerCase().startsWith(inputValue.toLowerCase())
+      )
+      .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
 
   const clear = () => {
     setItemLimit(undefined)
@@ -316,7 +342,7 @@ export const MultiSelectStatic: React.FC<Props> = ({
                 display='flex'
                 flexDirection='row'
                 alignItems='center'
-                backgroundColor='primary'
+                backgroundColor={disabled ? 'darkGrey' : 'primary'}
                 borderRadius='3px'
                 data-testid='select-selected-item'
               >
@@ -332,6 +358,7 @@ export const MultiSelectStatic: React.FC<Props> = ({
                 </SelectedItem>
 
                 <Button
+                  disabled={disabled}
                   onClick={e => {
                     e.stopPropagation()
                     onChange({
@@ -366,6 +393,7 @@ export const MultiSelectStatic: React.FC<Props> = ({
           </Flex>
 
           <input
+            disabled={disabled}
             type='text'
             placeholder={placeholder}
             data-testid='select-input'
@@ -394,7 +422,7 @@ export const MultiSelectStatic: React.FC<Props> = ({
           border='1px solid #dedede'
           {...getMenuProps()}
         >
-          {!isDependent && (
+          {!isDependent && !disabled && (
             <>
               <ul>
                 {filters.map((filter, index) => (
@@ -416,10 +444,41 @@ export const MultiSelectStatic: React.FC<Props> = ({
             </>
           )}
 
+          {selectedItems.length > 0 && removable && (
+            <>
+              <CustomText>selecionados</CustomText>
+              <SelectedList>
+                {selectedItems
+                  .sort((a, b) =>
+                    a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+                  )
+                  .map((item, index) => (
+                    <li
+                      key={`selected-${index}`}
+                      data-testid='selected-list'
+                      onClick={() => {
+                        onChange({
+                          selectedItems: selectedItems.filter(
+                            e => e.id !== item.id
+                          )
+                        })
+                      }}
+                    >
+                      <Text cursor='pointer'>{item.name}</Text>
+                      <MdClose color='#fff' />
+                    </li>
+                  ))}
+              </SelectedList>
+              <Divider mx={5} my={4} />
+              <CustomText>restantes</CustomText>
+            </>
+          )}
+
           <Itens>
             <ul>
               {isOpen &&
                 !isDependent &&
+                !disabled &&
                 getFilteredItems().map((item, index) => (
                   <li
                     className={highlightedIndex === index ? 'highlighted' : ''}
@@ -427,7 +486,13 @@ export const MultiSelectStatic: React.FC<Props> = ({
                     data-testid='select-item'
                     {...getItemProps({ item, index })}
                     onClick={e => {
-                      getItemProps({ item, index }).onClick(e)
+                      if (selectedItems.indexOf(item) > -1 && removable)
+                        onChange({
+                          selectedItems: selectedItems.filter(
+                            e => e.id !== item.id
+                          )
+                        })
+                      else getItemProps({ item, index }).onClick(e)
                       setItemLimit(undefined)
                     }}
                   >
@@ -448,19 +513,4 @@ export const MultiSelectStatic: React.FC<Props> = ({
       {errorForm && <InputErrorMessage errorMessage={errorMessage} />}
     </Flex>
   )
-}
-
-MultiSelectStatic.propTypes = {
-  items: PropTypes.array.isRequired,
-  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  filters: PropTypes.array,
-  onChange: PropTypes.func,
-  value: PropTypes.array,
-  isLoading: PropTypes.bool,
-  placeholder: PropTypes.string,
-  errorForm: PropTypes.bool,
-  errorMessage: PropTypes.string,
-  isDependent: PropTypes.bool,
-  emptyMessage: PropTypes.string,
-  dependentMessage: PropTypes.string
 }

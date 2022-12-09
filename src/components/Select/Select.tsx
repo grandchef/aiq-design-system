@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react'
-import PropTypes from 'prop-types'
 
 import { Props as BoxProps } from '../Box'
 
 import { SelectFetchable } from './SelectFetchable'
 import { SelectStatic } from './SelectStatic'
 
-export interface Props extends BoxProps {
+export type Props = BoxProps & {
   label?: string
   items?: Array<string | { id: any; name: any; select?: any }>
   isOpen?: boolean
@@ -38,8 +37,4 @@ export const Select: React.FC<Props> = ({ isFetchable, ...props }) => {
   }
 
   return <SelectStatic {...props} />
-}
-
-Select.propTypes = {
-  isFetchable: PropTypes.bool
 }

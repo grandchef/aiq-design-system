@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   color,
@@ -15,14 +14,14 @@ import {
   FontWeightProps
 } from 'styled-system'
 
-export interface Props
-  extends SpaceProps,
-    LayoutProps,
-    FontSizeProps,
-    GridProps,
-    FontWeightProps {
-  color?: string
-}
+export type Props = SpaceProps &
+  LayoutProps &
+  FontSizeProps &
+  GridProps &
+  FontWeightProps & {
+    color?: string
+    children?: any
+  }
 
 export const GridStyled = styled.div<Props>`
   ${color}
@@ -37,8 +36,4 @@ export const GridStyled = styled.div<Props>`
 
 export const Grid: React.FC<Props> = ({ ...props }) => {
   return <GridStyled {...props} />
-}
-
-GridStyled.propTypes = {
-  color: PropTypes.string
 }

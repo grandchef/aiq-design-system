@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
-import PropTypes from 'prop-types'
+
 import { useCombobox } from 'downshift'
 import { IoIosArrowDown } from 'react-icons/io'
 
@@ -9,7 +9,7 @@ import { Input } from '../Input'
 import { Loading } from '../Loading'
 import { Button, Props as ButtonProps } from '../Button'
 
-export interface Props extends BoxPros {
+export type Props = BoxPros & {
   label?: string
   items?: Array<string | { id: any; name: any; select?: any }>
   isOpen?: boolean
@@ -33,7 +33,7 @@ export interface Props extends BoxPros {
   dependentMessage?: string
 }
 
-const Container = styled(Box)<Props>`
+const Container = styled(Box) <Props>`
   position: relative;
 
   input {
@@ -67,8 +67,8 @@ const Container = styled(Box)<Props>`
     }
 
     ${({ isOpen }) =>
-      !isOpen &&
-      css`
+    !isOpen &&
+    css`
         display: none;
       `}
   }
@@ -87,14 +87,14 @@ interface VariantSelect extends ButtonProps {
   variantSelect?: any
 }
 
-const ButtonStyled = styled(Button)<VariantSelect>`
+const ButtonStyled = styled(Button) <VariantSelect>`
   position: absolute;
   top: ${({ variantSelect }) =>
     variantSelect === 'outlined' ? '13px' : '12px'};
   right: 14px;
 `
 
-const LoadingBox = styled(Box)<VariantSelect>`
+const LoadingBox = styled(Box) <VariantSelect>`
   position: absolute;
   top: ${({ variantSelect }) =>
     variantSelect === 'outlined' ? '13px' : '12px'};
@@ -265,33 +265,6 @@ export const SelectStatic: React.FC<Props> = ({
       </Box>
     </Container>
   )
-}
-
-SelectStatic.propTypes = {
-  label: PropTypes.string,
-  items: PropTypes.array,
-  isOpen: PropTypes.bool,
-  variant: PropTypes.oneOf(['outlined']),
-  prefix: PropTypes.any,
-  placeholder: PropTypes.string,
-  handleSelectedItemChange: PropTypes.func,
-  onChangeTextInput: PropTypes.func,
-  selectedItem: PropTypes.any,
-  autoComplete: PropTypes.bool,
-  backgroundColor: PropTypes.any,
-  border: PropTypes.any,
-  width: PropTypes.any,
-  maxWidth: PropTypes.any,
-  sufix: PropTypes.any,
-  isLoading: PropTypes.bool,
-  errorForm: PropTypes.bool,
-  errorMessage: PropTypes.string,
-  inputProps: PropTypes.object,
-  clearOnSelect: PropTypes.bool,
-  isDependent: PropTypes.bool,
-  emptyMessage: PropTypes.string,
-  emptyElement: PropTypes.element,
-  dependentMessage: PropTypes.string
 }
 
 SelectStatic.defaultProps = {

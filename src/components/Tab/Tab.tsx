@@ -1,9 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { space, SpaceProps } from 'styled-system'
 import styled, { css } from 'styled-components'
 
-export interface TabProps extends SpaceProps {
+export type TabProps = SpaceProps & {
   index: number
   children: any
   value?: number
@@ -131,13 +130,6 @@ export const Tab: React.FC<TabProps> = ({
       {children}
     </TabStyled>
   )
-}
-
-Tab.propTypes = {
-  index: PropTypes.number.isRequired,
-  children: PropTypes.any.isRequired,
-  value: PropTypes.number,
-  variant: PropTypes.oneOf(['default', 'contained', 'card'])
 }
 
 Tab.defaultProps = {

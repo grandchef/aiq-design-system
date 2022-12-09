@@ -1,19 +1,32 @@
 import React, { InputHTMLAttributes } from 'react'
-import PropTypes from 'prop-types'
 
 import styled, { DefaultTheme } from 'styled-components'
-import { color } from 'styled-system'
+import {
+  color,
+  fontSize,
+  FontSizeProps,
+  fontWeight,
+  FontWeightProps,
+  typography,
+  TypographyProps
+} from 'styled-system'
 
-export interface Props
-  extends DefaultTheme,
-    InputHTMLAttributes<HTMLInputElement> {
-  label?: string
-  labelColor?: string
-  style?: any
-}
+export type Props = DefaultTheme &
+  FontSizeProps &
+  FontWeightProps &
+  TypographyProps &
+  InputHTMLAttributes<HTMLInputElement> & {
+    label?: string
+    labelColor?: string
+    style?: any
+    borderColor?: string
+  }
 
 const Label = styled.label<Props>`
   ${color}
+  ${fontSize}
+  ${fontWeight}
+  ${typography}
 
   display: flex;
   align-items: center;
@@ -32,7 +45,8 @@ const BoxCheckbox = styled.div<Props>`
   width: 16px;
   height: 16px;
   border-radius: 2px;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
+  border: 2px solid
+    ${({ theme, borderColor }) => theme.colors[borderColor || 'primary']};
 
   transition: all 0.2s;
 
@@ -45,6 +59,8 @@ const BoxCheckbox = styled.div<Props>`
   ${HiddenCheckbox}:focus + & {
     box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.primary};
   }
+
+  flex-shrink: 0;
 `
 
 const Icon = styled.svg<Props>`
@@ -60,7 +76,7 @@ const Icon = styled.svg<Props>`
 `
 
 export const Checkbox = React.forwardRef<HTMLInputElement, Props>(
-  ({ label, style, labelColor, disabled, ...props }, ref) => {
+  ({ label, style, labelColor, disabled, borderColor, ...props }, ref) => {
     return (
       <Label
         data-testid='checkbox'
@@ -74,11 +90,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, Props>(
           ref={ref}
           {...props}
         />
-        <BoxCheckbox>
+        <BoxCheckbox borderColor={borderColor}>
           <Icon viewBox='0 0 24 24'>
             <polyline points='20 6 9 17 4 12' />
           </Icon>
         </BoxCheckbox>
+
         {label}
       </Label>
     )
@@ -86,11 +103,3 @@ export const Checkbox = React.forwardRef<HTMLInputElement, Props>(
 )
 
 Checkbox.displayName = 'Checkbox'
-
-Checkbox.propTypes = {
-  checked: PropTypes.bool,
-  label: PropTypes.string,
-  labelColor: PropTypes.string,
-  style: PropTypes.any,
-  disabled: PropTypes.bool
-}

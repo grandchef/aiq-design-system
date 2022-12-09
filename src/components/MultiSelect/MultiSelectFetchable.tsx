@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 import { MdClose } from 'react-icons/md'
@@ -40,6 +39,7 @@ export interface Props {
   errorForm?: boolean
   isDependent?: boolean
   dependentMessage?: string
+  disabled?: boolean
 }
 
 interface ContainerInputProps {
@@ -151,6 +151,7 @@ export const MultiSelectFetchable: React.FC<Props> = ({
   errorMessage,
   isDependent = false,
   dependentMessage = 'este campo tem alguma dependência',
+  disabled,
   handleSelectedItemChange = () => {
     // do nothing.
   },
@@ -320,7 +321,7 @@ export const MultiSelectFetchable: React.FC<Props> = ({
                 display='flex'
                 flexDirection='row'
                 alignItems='center'
-                backgroundColor='primary'
+                backgroundColor={disabled ? 'darkGrey' : 'primary'}
                 borderRadius='3px'
               >
                 <SelectedItem
@@ -335,6 +336,7 @@ export const MultiSelectFetchable: React.FC<Props> = ({
                 </SelectedItem>
 
                 <Button
+                  disabled={disabled}
                   onClick={e => {
                     e.stopPropagation()
                     handleSelectedItemChange({
@@ -369,6 +371,7 @@ export const MultiSelectFetchable: React.FC<Props> = ({
           </Flex>
 
           <input
+            disabled={disabled}
             type='text'
             placeholder={placeholder}
             style={{ width: '100%', flex: 1, paddingLeft: '5px' }}
@@ -390,7 +393,7 @@ export const MultiSelectFetchable: React.FC<Props> = ({
         </ContainerInput>
 
         <Overflow
-          isOpen={isOpen}
+          isOpen={isOpen || !disabled}
           mt={13}
           py={7}
           flexDirection='column'
@@ -423,6 +426,7 @@ export const MultiSelectFetchable: React.FC<Props> = ({
               {isOpen &&
                 !isDependent &&
                 !isLoading &&
+                !disabled &&
                 getFilteredItems().map((item, index) => (
                   <li
                     className={highlightedIndex === index ? 'highlighted' : ''}
@@ -452,21 +456,4 @@ export const MultiSelectFetchable: React.FC<Props> = ({
       {errorForm && <InputErrorMessage errorMessage={errorMessage} />}
     </Flex>
   )
-}
-
-MultiSelectFetchable.propTypes = {
-  items: PropTypes.array.isRequired,
-  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  filters: PropTypes.array,
-  onChange: PropTypes.func,
-  value: PropTypes.array,
-  isLoading: PropTypes.bool,
-  placeholder: PropTypes.string,
-  handleSelectedItemChange: PropTypes.func,
-  loadingMessage: PropTypes.string,
-  emptyMessage: PropTypes.string,
-  errorForm: PropTypes.bool,
-  errorMessage: PropTypes.string,
-  isDependent: PropTypes.bool,
-  dependentMessage: PropTypes.string
 }

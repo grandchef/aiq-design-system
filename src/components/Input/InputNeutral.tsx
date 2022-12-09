@@ -27,6 +27,7 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
   border?: any
   width?: any
   maxWidth?: any
+  disabled?: boolean
   nativeAutoComplete?: 'on' | 'disabled'
 }
 
@@ -64,6 +65,7 @@ export interface PropsContainerSufix {
   errorForm?: boolean
   onClick?: () => void
   onBlur?: () => void
+  disabled?: boolean
 }
 
 export const ContainerSufix = styled(Box) <PropsContainerSufix>`
@@ -73,9 +75,12 @@ export const ContainerSufix = styled(Box) <PropsContainerSufix>`
   padding: 10px 12px;
   border: 1px solid ${({ theme }) => theme.colors.mediumGrey};
   border-radius: 4px;
+  background: ${({ theme, disabled }) =>
+    disabled ? theme.colors.lightGrey : theme.colors.white};
 
-  ${({ inputSelected }) =>
+  ${({ inputSelected, disabled }) =>
     inputSelected &&
+    !disabled &&
     css`
       border-color: ${({ theme }) => theme.colors.primary};
 
@@ -119,6 +124,7 @@ export const InputNeutral: React.FC<Props> = ({
   placeholder,
   containerProps,
   nativeAutoComplete,
+  disabled,
   ...props
 }) => {
   const [inputSelected, setInputSelected] = useState(false)
@@ -141,6 +147,7 @@ export const InputNeutral: React.FC<Props> = ({
           inputSelected={inputSelected}
           onClick={() => setInputSelected(true)}
           onBlur={() => setInputSelected(false)}
+          disabled={disabled}
         >
           <InputSufixed
             name={name}
@@ -151,6 +158,7 @@ export const InputNeutral: React.FC<Props> = ({
             errorForm={errorForm}
             errorMessage={errorMessage}
             autoComplete={nativeAutoComplete}
+            disabled={disabled}
             {...props}
           />
           {sufix}
@@ -240,6 +248,9 @@ export const InputNeutral: React.FC<Props> = ({
         errorMessage={errorMessage}
         autoComplete={nativeAutoComplete}
         {...props}
+        data-testid='input'
+        nativeAutoComplete={nativeAutoComplete}
+        disabled={disabled}
       />
 
       {errorForm && <InputErrorMessage errorMessage={errorMessage} />}

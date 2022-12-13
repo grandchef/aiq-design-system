@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-import { MdSettings, MdSubdirectoryArrowRight, MdCall } from 'react-icons/md'
+import { MdSettings, MdSubdirectoryArrowRight, MdCall } from '../../assets/icons'
 import { Avatar } from '../Avatar'
 
 import { Flex } from '../Flex'

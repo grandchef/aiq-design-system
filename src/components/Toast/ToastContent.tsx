@@ -9,7 +9,7 @@ import {
   FiXOctagon,
   FiCheckCircle,
   FiAlertTriangle
-} from 'react-icons/fi'
+} from '../../assets/icons'
 
 import { Box } from '../Box'
 import { Message } from './Toast'
@@ -90,7 +90,7 @@ const ProgressStyled = styled.div<PropsProgress>`
   }
 `
 
-const StyledToast = styled(animated.div)<PropsStyledToast>`
+const StyledToast = styled(animated.div) <PropsStyledToast>`
   width: 360px;
   display: flex;
   position: relative;

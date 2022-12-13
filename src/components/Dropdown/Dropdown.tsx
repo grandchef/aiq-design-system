@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
+import { MdArrowDropDown, MdArrowDropUp } from '../../assets/icons'
 import styled, { DefaultTheme } from 'styled-components'
 import {
   size,
@@ -69,7 +69,7 @@ const DropdownStyled = styled.div<DropdownStyledProps>`
   }
 `
 
-interface ItensStyledProps extends DefaultTheme, LayoutProps {}
+interface ItensStyledProps extends DefaultTheme, LayoutProps { }
 
 const ItensStyled = styled.ul<ItensStyledProps>`
   ${layout}

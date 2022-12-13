@@ -2,7 +2,7 @@ import React from 'react'
 
 import { fireEvent } from '@testing-library/react'
 
-import { FaHamburger } from 'react-icons/fa'
+import { FaHamburger } from '../../assets/icons'
 
 import { render } from '../utils/test/render'
 

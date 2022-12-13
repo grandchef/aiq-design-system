@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { FlexProps } from 'styled-system'
-import { MdArrowDropDown } from 'react-icons/md'
+import { MdArrowDropDown } from '../../assets/icons'
 
 import { Flex } from '../Flex'
 
@@ -46,7 +46,7 @@ const OverlayStyled = styled(Flex)`
   position: relative;
 `
 
-const OverlayContentStyled = styled(Flex)<FlexProps>`
+const OverlayContentStyled = styled(Flex) <FlexProps>`
   position: absolute;
   top: 18px;
   width: max-content;

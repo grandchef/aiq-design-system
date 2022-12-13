@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { withKnobs, text, select, boolean } from '@storybook/addon-knobs'
 
-import { FaHamburger, FaWater } from 'react-icons/fa'
+import { FaHamburger, FaWater } from '../../assets/icons'
 
 import { Button } from './Button'
 import { Flex } from '../Flex'

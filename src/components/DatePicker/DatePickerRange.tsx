@@ -14,7 +14,7 @@ import { Flex } from '../Flex'
 import { Icon } from '../Icon'
 import { Text } from '../Text'
 
-import { MdArrowDropDown } from 'react-icons/md'
+import { MdArrowDropDown } from '../../assets/icons'
 
 export interface Props {
   value?: Array<Moment>

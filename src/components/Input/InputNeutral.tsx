@@ -1,6 +1,6 @@
 import React, { useState, InputHTMLAttributes } from 'react'
 import PropTypes from 'prop-types'
-import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
+import { MdVisibility, MdVisibilityOff } from '../../assets/icons'
 
 import styled, { css } from 'styled-components'
 import { space, layout, border, color } from 'styled-system'
@@ -33,7 +33,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 export const InputStyled = styled.input.attrs({
   'data-testid': 'input'
-})<Props>`
+}) <Props>`
   &::placeholder {
     color: ${({ theme }) => theme.colors.grey};
     font-size: ${({ theme }) => theme.fontSizes.medium};
@@ -67,7 +67,7 @@ export interface PropsContainerSufix {
   onBlur?: () => void
 }
 
-export const ContainerSufix = styled(Box)<PropsContainerSufix>`
+export const ContainerSufix = styled(Box) <PropsContainerSufix>`
   display: flex;
   align-items: center;
 

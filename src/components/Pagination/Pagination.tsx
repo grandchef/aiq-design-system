@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+import { MdChevronLeft, MdChevronRight } from '../../assets/icons'
 import styled, { css } from 'styled-components'
 
 import { Flex } from '../Flex'
@@ -21,7 +21,7 @@ export interface Props {
   onChange?: (page: number) => void
 }
 
-const PaginationStyled = styled(Flex)<Props>`
+const PaginationStyled = styled(Flex) <Props>`
   flex-wrap: wrap;
 
   ${({ disabled }) =>

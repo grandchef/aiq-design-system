@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
-import { MdExpandMore, MdExpandLess } from 'react-icons/md'
+import { MdExpandMore, MdExpandLess } from '../../assets/icons'
 
 import { Text } from '../Text'
 import { Flex } from '../Flex'
@@ -69,15 +69,15 @@ const ItemStyled = styled.li<ItemStyledProps>`
     cursor: pointer;
 
     ${({ theme, sidebarOpened }) =>
-      !sidebarOpened &&
-      css`
+    !sidebarOpened &&
+    css`
         svg {
           color: ${theme.colors.primary};
         }
       `};
 
     background: ${({ theme, sidebarOpened }) =>
-      sidebarOpened ? theme.colors.lightGrey : theme.colors.white};
+    sidebarOpened ? theme.colors.lightGrey : theme.colors.white};
   }
 `
 

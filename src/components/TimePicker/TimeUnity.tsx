@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 
-import { MdExpandLess, MdExpandMore } from 'react-icons/md'
+import { MdExpandLess, MdExpandMore } from '../../assets/icons'
 
 import { Flex } from '../Flex'
 import { Icon } from '../Icon'
@@ -22,7 +22,7 @@ interface ButtonProps {
   onClick: () => void
 }
 
-const Button = styled(Icon)<ButtonProps>`
+const Button = styled(Icon) <ButtonProps>`
   &:hover {
     cursor: pointer;
   }

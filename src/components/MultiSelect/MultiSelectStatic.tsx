@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
-import { MdClose } from 'react-icons/md'
+import { MdClose } from '../../assets/icons'
 import { useCombobox, useMultipleSelection } from 'downshift'
 
 import { Flex } from '../Flex'
@@ -56,7 +56,7 @@ interface ContainerInputProps {
   errorForm?: boolean
 }
 
-const ContainerInput = styled(Box)<ContainerInputProps>`
+const ContainerInput = styled(Box) <ContainerInputProps>`
   display: flex;
   flex-direction: row;
   overflow: auto;
@@ -96,7 +96,7 @@ interface OverflowProps {
   isOpen?: boolean
 }
 
-const Overflow = styled(Flex)<OverflowProps>`
+const Overflow = styled(Flex) <OverflowProps>`
   position: absolute;
   min-width: 100%;
   width: max-content;
@@ -184,15 +184,15 @@ export const MultiSelectStatic: React.FC<Props> = ({
 
         let total = 0
         let limit = -1
-        ;(refBadges.childNodes as NodeListOf<HTMLDivElement>).forEach(
-          (badge: HTMLDivElement, index) => {
-            total = total + badge?.offsetWidth
-            if (total >= containerSize * 0.9 - 60 && limit === -1) {
-              limit = index
-              return false
+          ; (refBadges.childNodes as NodeListOf<HTMLDivElement>).forEach(
+            (badge: HTMLDivElement, index) => {
+              total = total + badge?.offsetWidth
+              if (total >= containerSize * 0.9 - 60 && limit === -1) {
+                limit = index
+                return false
+              }
             }
-          }
-        )
+          )
 
         if (containerSize * 0.9 - 60 <= total && !itemLimit && limit >= 0) {
           if (itemLimit !== limit) setItemLimit(limit)
@@ -358,9 +358,8 @@ export const MultiSelectStatic: React.FC<Props> = ({
                 backgroundColor='primary'
                 borderRadius='3px'
               >
-                <Text color='white'>{`+${
-                  selectedItems.length - itemLimit
-                }`}</Text>
+                <Text color='white'>{`+${selectedItems.length - itemLimit
+                  }`}</Text>
               </Flex>
             )}
           </Flex>

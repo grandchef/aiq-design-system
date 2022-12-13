@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdHome } from 'react-icons/md'
+import { MdHome } from '../../assets/icons'
 import { withKnobs, text } from '@storybook/addon-knobs'
 
 import { Icon } from './Icon'

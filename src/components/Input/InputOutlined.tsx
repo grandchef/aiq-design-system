@@ -1,6 +1,6 @@
 import React, { useState, InputHTMLAttributes } from 'react'
 
-import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
+import { MdVisibility, MdVisibilityOff } from '../../assets/icons'
 
 import styled, { css } from 'styled-components'
 
@@ -20,7 +20,7 @@ import { InputErrorMessage } from '../InputErrorMessage'
 
 export interface Props
   extends InputHTMLAttributes<HTMLInputElement>,
-    SpaceProps {
+  SpaceProps {
   name?: string
   placeholder?: string
   inputRef?: any
@@ -63,7 +63,7 @@ export const LabelStyled = styled.label<Props>`
     font-family: inherit;
     border: solid 1px
       ${({ theme, errorForm }) =>
-        errorForm ? theme.colors.error : theme.colors.mediumGrey};
+    errorForm ? theme.colors.error : theme.colors.mediumGrey};
     border-top-color: ${({ label }) => (label ? 'transparent' : 'interiht')};
 
     border-radius: 4px;
@@ -76,15 +76,15 @@ export const LabelStyled = styled.label<Props>`
     line-height: inherit;
     transition: border 0.2s, box-shadow 0.2s;
     background: ${({ theme, disabled }) =>
-      disabled ? theme.colors.lightGrey : theme.colors.white};
+    disabled ? theme.colors.lightGrey : theme.colors.white};
 
     ${({ placeholder, theme, errorForm }) => {
-      if (placeholder === ' ' || placeholder === '') {
-        return css`
+    if (placeholder === ' ' || placeholder === '') {
+      return css`
           &:not(:focus):placeholder-shown {
             border-top-color: ${errorForm
-              ? theme.colors.error
-              : theme.colors.mediumGrey};
+          ? theme.colors.error
+          : theme.colors.mediumGrey};
           }
 
           &:not(:focus):placeholder-shown + span {
@@ -93,10 +93,10 @@ export const LabelStyled = styled.label<Props>`
             color: ${theme.colors.grey};
           }
         `
-      }
+    }
 
-      return css``
-    }};
+    return css``
+  }};
 
     &:focus {
       border-color: ${({ theme }) => theme.colors.primary};
@@ -144,7 +144,7 @@ export const LabelStyled = styled.label<Props>`
         box-shadow: inset 0 1px transparent;
         transition: border-color 0.2s, box-shadow 0.2s;
         border-top-color: ${({ theme, errorForm }) =>
-          errorForm ? theme.colors.error : theme.colors.mediumGrey};
+    errorForm ? theme.colors.error : theme.colors.mediumGrey};
       }
 
       &::before {

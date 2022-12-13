@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdHome, MdWork } from 'react-icons/md'
+import { MdHome, MdWork } from '../../assets/icons'
 
 import { Breadcrumb } from './Breadcrumb'
 import { Link } from '../Link'

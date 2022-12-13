@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { withKnobs, text, select, boolean } from '@storybook/addon-knobs'
 
-import { MdSearch } from 'react-icons/md'
+import { MdSearch } from '../../assets/icons'
 
 import { Box } from '../Box'
 import { Flex } from '../Flex'

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 
 import PropTypes from 'prop-types'
-import { MdFileUpload } from 'react-icons/md'
+import { MdFileUpload } from '../../assets/icons'
 import styled, { css, DefaultTheme } from 'styled-components'
 
 import { Flex } from '../Flex'
@@ -45,10 +45,10 @@ interface ContainerProps extends DefaultTheme {
   isDragover?: boolean
 }
 
-const Container = styled(Flex)<ContainerProps>`
+const Container = styled(Flex) <ContainerProps>`
   border: 1px solid
     ${({ error, theme }) =>
-      error ? theme.colors.red : theme.colors.mediumGrey};
+    error ? theme.colors.red : theme.colors.mediumGrey};
 
   position: relative;
   &:hover {

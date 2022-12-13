@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { MdStore } from 'react-icons/md'
+import { MdStore } from '../../assets/icons'
 import { render } from '../utils/test/render'
 
 import { Icon } from '../Icon'

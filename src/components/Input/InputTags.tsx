@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { MdClose } from 'react-icons/md'
+import { MdClose } from '../../assets/icons'
 
 import styled, { css } from 'styled-components'
 import { space, layout, border, color } from 'styled-system'
@@ -55,7 +55,7 @@ export interface PropsContainerInput {
   onBlur?: () => void
 }
 
-export const ContainerInput = styled(Box)<PropsContainerInput>`
+export const ContainerInput = styled(Box) <PropsContainerInput>`
   display: flex;
   max-height: 37px;
   align-items: center;

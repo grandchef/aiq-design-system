@@ -4,7 +4,7 @@ import { Select } from './Select'
 import { Flex } from '../Flex'
 import { Button } from '../Button'
 
-import { MdSearch } from 'react-icons/md'
+import { MdSearch } from '../../assets/icons'
 
 export default {
   component: Select,

@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useCombobox } from 'downshift'
-import { IoIosArrowDown } from 'react-icons/io'
+import { IoIosArrowDown } from '../../assets/icons'
 
 import { Box, Props as BoxPros } from '../Box'
 import { Input } from '../Input'
@@ -33,7 +33,7 @@ export interface Props extends BoxPros {
   dependentMessage?: string
 }
 
-const Container = styled(Box)<Props>`
+const Container = styled(Box) <Props>`
   position: relative;
 
   input {
@@ -65,8 +65,8 @@ const Container = styled(Box)<Props>`
     }
 
     ${({ isOpen }) =>
-      !isOpen &&
-      css`
+    !isOpen &&
+    css`
         display: none;
       `}
   }
@@ -84,14 +84,14 @@ interface VariantSelect extends ButtonProps {
   variantSelect?: any
 }
 
-const ButtonStyled = styled(Button)<VariantSelect>`
+const ButtonStyled = styled(Button) <VariantSelect>`
   position: absolute;
   top: ${({ variantSelect }) =>
     variantSelect === 'outlined' ? '13px' : '12px'};
   right: 14px;
 `
 
-const LoadingBox = styled(Box)<VariantSelect>`
+const LoadingBox = styled(Box) <VariantSelect>`
   position: absolute;
   top: ${({ variantSelect }) =>
     variantSelect === 'outlined' ? '13px' : '12px'};

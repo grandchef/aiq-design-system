@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { MdHome } from 'react-icons/md'
+import { MdHome } from '../../assets/icons'
 
 import { fireEvent } from '@testing-library/react'
 

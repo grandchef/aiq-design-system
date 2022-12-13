@@ -2,7 +2,7 @@ import React from 'react'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { MdHome, MdBookmark, MdStorage, MdExitToApp } from 'react-icons/md'
+import { MdHome, MdBookmark, MdStorage, MdExitToApp } from '../../assets/icons'
 
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 

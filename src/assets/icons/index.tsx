@@ -28,10 +28,3 @@ export { FiAlertTriangle } from '@react-icons/all-files/fi/FiAlertTriangle'
 
 export { FaHamburger } from '@react-icons/all-files/fa/FaHamburger'
 export { FaWater } from '@react-icons/all-files/fa/FaWater'
-
-
-
-
-
-
-
